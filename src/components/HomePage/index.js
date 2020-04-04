@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../logo.svg";
 
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
           Learn React
         </a>
         <Link to="/page-1">Page 1</Link>
+        <Link to="/TailWindPractice1">tailwind practice</Link>
       </header>
     </div>
   );

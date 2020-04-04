@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.light-mode {
+    border: 0px solid white;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 15px;
+}
