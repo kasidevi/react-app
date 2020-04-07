@@ -32,18 +32,19 @@ class EmojiGame extends React.Component {
     }
     onEmojiClick = (emoji) => {
         let { score } = this.state;
-        if (emoji.isClicked) {
+        if (emoji.isClicked && score !== 12) {
             this.setState({ gameState: false });
             this.setState({ stateForWinOrLose: true });
         }
+        else if (emoji.isClicked && score === 12) {
+            this.setState({ gameState: true });
+            this.setState({ stateForWinOrLose: true });
+        }
         else {
+            this.setState({ gameState: true });
             emoji.isClicked = true;
             this.incrementScore();
             this.shuffleEmojis();
-            if (score === 12) {
-                this.setState({ gameState: true });
-                this.setState({ stateForWinOrLose: true });
-            }
         }
     }
     shuffleEmojis = () => {

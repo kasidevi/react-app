@@ -6,7 +6,7 @@ class WinOrLose extends React.Component {
         const { score, gameState, onPlayAgainClick, selectedTheme } = this.props;
         return (<DivForWinOrLose selectedTheme={selectedTheme}>
         <TextTag>{score}</TextTag>
-        {this.gameState?<YouWon>You Won!</YouWon>:<YouLose>You Lose!</YouLose>}
+        {gameState?<YouWon>You Won!</YouWon>:<YouLose>You Lose!</YouLose>}
         <PlayAgainButton onClick={onPlayAgainClick}>Play Again</PlayAgainButton>
         </DivForWinOrLose>);
     }
