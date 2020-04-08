@@ -5,7 +5,7 @@ import Header from './Header.js';
 import EmojiCard from './EmojiCard';
 import HowToPlay from './HowToPlay.js';
 import WinOrLose from './WinOrLose.js';
-import { DivTagWithFlexRow } from '../EmojiGameCss/EmojiGameCss.js';
+import { DivTagWithFlexRow, MainDiv } from '../EmojiGameCss/EmojiGameCss.js';
 class EmojiGame extends React.Component {
     constructor(props) {
         super(props);
@@ -26,25 +26,25 @@ class EmojiGame extends React.Component {
             score: 0,
             topScore: 0,
             gameState: 'PLAYING',
+            selectedTheme: 'light',
             stateForWinOrLose: false
         };
     }
     onEmojiClick = (emoji) => {
         let { score } = this.state;
-        if (emoji.isClicked) {
+        if (emoji.isClicked && score !== 12) {
             this.setState({ gameState: false });
             this.setState({ stateForWinOrLose: true });
-            // <WinOrLose score={score} gameState={this.state.gameState}/>;
+        }
+        else if (emoji.isClicked && score === 12) {
+            this.setState({ gameState: true });
+            this.setState({ stateForWinOrLose: true });
         }
         else {
+            this.setState({ gameState: true });
             emoji.isClicked = true;
             this.incrementScore();
             this.shuffleEmojis();
-            if (score === 12) {
-                this.setState({ gameState: true });
-                this.setState({ stateForWinOrLose: true });
-                //   <WinOrLose score={score} gameState={this.state.gameState}/>;
-            }
         }
     }
     shuffleEmojis = () => {
@@ -66,14 +66,19 @@ class EmojiGame extends React.Component {
         if (this.state.score > this.state.topScore)
             this.setState({ topScore: this.state.score });
     }
-    onChangeTheme = () => {}
+    onChangeTheme = () => {
+        if (this.state.selectedTheme === 'light')
+            this.setState({ selectedTheme: 'dark' });
+        else
+            this.setState({ selectedTheme: 'light' });
+    }
     render() {
-        let { stateForWinOrLose, gameState, score, topScore, emojis } = this.state;
-        return (<div>
-            <Header score={score} topScore={topScore} /> {/*//add selectedTheme,onChangeTheme*/}
-            {stateForWinOrLose?<WinOrLose score={score} gameState={this.state.gameState} onPlayAgainClick={this.onPlayAgainClick}/>:<DivTagWithFlexRow>{emojis.map(emoji=><EmojiCard emoji={emoji} onEmojiClick={()=>this.onEmojiClick(emoji)}/>)}</DivTagWithFlexRow>}
-            <HowToPlay />
-        </div>);
+        let { stateForWinOrLose, selectedTheme, gameState, score, topScore, emojis } = this.state;
+        return (<MainDiv selectedTheme={selectedTheme}>
+            <Header score={score} topScore={topScore} selectedTheme={selectedTheme} onChangeTheme={this.onChangeTheme}/> 
+            {stateForWinOrLose?<WinOrLose selectedTheme={selectedTheme} score={score} gameState={gameState} onPlayAgainClick={this.onPlayAgainClick}/>:<DivTagWithFlexRow>{emojis.map(emoji=><EmojiCard selectedTheme={selectedTheme} emoji={emoji} onEmojiClick={()=>this.onEmojiClick(emoji)}/>)}</DivTagWithFlexRow>}
+            <HowToPlay selectedTheme={selectedTheme}/>
+        </MainDiv>);
     }
 }
 

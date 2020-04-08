@@ -5,11 +5,15 @@ import '../Header/Header.css';
 import { CountriesFilterBar } from '../CountriesFilterBar/CountriesFilterBar.js';
 import { Countries } from '../Countries/Countries.js';
 //import Loader from 'react-loader-spinner';
+import themeStore from '../../stores/ThemeStore';
 let regions = [];
 class CountriesDashboardApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = { countries: [], uniqueRegions: [], searchText: '', selectedRegion: 'All' };
+    }
+    onChangeTheme = () => {
+        themeStore.updateTheme();
     }
     componentDidMount = () => {
         fetch('https://restcountries.eu/rest/v2/all')
@@ -76,9 +80,9 @@ class CountriesDashboardApp extends React.Component {
     }
     render() {
         return (<div>
-            <Header  onChangeTheme={this.props.onChangeTheme} selectedTheme={this.props.selectedTheme}
-            changeThemeLight={this.props.changeThemeLight}/>
-         <div className={this.props.changeThemeToBody}>
+            <Header  onChangeTheme={this.onChangeTheme} selectedTheme={themeStore.selectedTheme}
+            changeThemeLight={themeStore.changeThemeLight}/>
+         <div className={themeStore.changeThemeToBody}>
             <CountriesFilterBar searchText={this.state.searchText}
                                 regionOptions={this.state.uniqueRegions} 
                                 selectedRegion={this.state.selectedRegion} 
@@ -97,3 +101,22 @@ class CountriesDashboardApp extends React.Component {
 }
 
 export { CountriesDashboardApp };
+
+/*return (<div>
+            <Header  onChangeTheme={this.props.onChangeTheme} selectedTheme={this.props.selectedTheme}
+            changeThemeLight={this.props.changeThemeLight}/>
+         <div className={this.props.changeThemeToBody}>
+            <CountriesFilterBar searchText={this.state.searchText}
+                                regionOptions={this.state.uniqueRegions} 
+                                selectedRegion={this.state.selectedRegion} 
+                                selectedTheme={this.props.selectedTheme}
+                                onChangeSelectedRegion={this.onChangeSelectedRegion}
+                                onChangeSearchText={this.onChangeSearchText}
+                                changeThemeLight={this.props.changeThemeLight}/>
+            
+            
+       {this.displayCountries().length>0?   <Countries  countries={this.displayCountries()} selectedTheme={this.props.selectedTheme} changeThemeLight={this.props.changeThemeLight}/>
+       :<p className='countries-not-available'>{this.LoadingIndicator()}<br/> Not Found</p>
+        }
+       </div>
+    </div>);*/
