@@ -41,6 +41,7 @@ class TodoListUsingMobx extends React.Component {
     }
 
     removeList = (removeTodo) => {
+        alert(removeTodo.id)
         let listOfObjects = [...this.inputValues];
         let removeTodoId = listOfObjects.indexOf(removeTodo);
         listOfObjects.splice(removeTodoId, 1);
