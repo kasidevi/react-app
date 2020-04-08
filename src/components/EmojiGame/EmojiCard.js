@@ -4,10 +4,10 @@ class EmojiCard extends React.Component {
     render() {
 
         const { emoji, onEmojiClick } = this.props;
-        return (<DivTagWithFlexcol onClick={onEmojiClick}>
+        return (<DivForEmojiCard onClick={onEmojiClick}>
             <EachEmoji src={emoji.image} />
-            <PTag>{emoji.name}</PTag>
-        </DivTagWithFlexcol>);
+            <EmojiName>{emoji.name}</EmojiName>
+        </DivForEmojiCard>);
 
     }
 }
