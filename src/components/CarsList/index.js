@@ -98,14 +98,14 @@ class CarList extends React.Component {
         this.setState({
             carsList: array
         });
-
     }
     renderCarsList = () => {}
     render() {
         return (
             <div>
            <button onClick={this.addCarToCarsList} className='add-car'>Add Car</button>
-          <div> {this.state.carsList.map((carId)=><Car id={carId.toString()} deleteCar={this.removeCarFromCarsList}/>)}</div>
+          <div> {
+          this.state.carsList.map((carId)=><Car id={carId.toString()} deleteCar={this.removeCarFromCarsList}/>)}</div>
         </div>);
     }
 }

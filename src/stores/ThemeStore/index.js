@@ -25,7 +25,6 @@ class ThemeStore {
 
             //   this.setState({ changeThemeLight: 'light-color', selectedTheme: true });
         }
-
     }
 }
 

@@ -22,6 +22,7 @@ import EmojiGame from './components/EmojiGame/index.js';
 
 import { TodoListUsingMobx } from './components/TodoListUsingMobx/index.js';
 import './components/TodoListUsingMobx/index.css';
+import TodoApp from './components/TodoListWithMobx/TodoApp/TodoApp.js';
 
 //configure({ enforceActions: true });
 @observer
@@ -70,6 +71,11 @@ class App extends React.Component {
               <Link to="/ TodoListUsingMobx">Todo list using Mobx</Link>
             </li>
             
+              <li>
+              <Link to="/TodoApp">TodoApp with  Mobx version2</Link>
+            </li>
+          
+            
             <li>
               <Link to="/FormComponents">Form Component</Link>
             </li>
@@ -106,6 +112,10 @@ class App extends React.Component {
             <TodoListUsingMobx />
           </Route>
         
+          <Route path="/TodoApp">
+            <TodoApp />
+          </Route>
+          
           <Route path="/FormComponents">
             <FormComponent />
           </Route>
