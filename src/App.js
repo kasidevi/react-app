@@ -24,6 +24,7 @@ import { TodoListUsingMobx } from './components/TodoListUsingMobx/index.js';
 import './components/TodoListUsingMobx/index.css';
 import TodoApp from './components/TodoListWithMobx/TodoApp/TodoApp.js';
 
+import A from './components/ProviderConcept/A/index.js'
 //configure({ enforceActions: true });
 @observer
 class App extends React.Component {
@@ -89,6 +90,9 @@ class App extends React.Component {
              <li>
               <Link to="/CounterUsingMobx">Counter Using Mobx</Link>
             </li>
+           <li>
+              <Link to="/ProviderConcept">Provider Concept in mobx</Link>
+            </li>
            
           </ul>
         </nav>
@@ -96,6 +100,11 @@ class App extends React.Component {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
          <Switch>
+         
+           <Route path="/ProviderConcept">
+            <A />
+          </Route>
+          
            <Route path="/CarsList">
             <CarList />
           </Route>
