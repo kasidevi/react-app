@@ -1,7 +1,7 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import todoStore from '../../../stores/TodoStore/TodoStore';
+import todoStore from '../../../stores/TodoStore';
 import TodoModel from '../../../stores/models';
 @observer
 class AddTodo extends React.Component {

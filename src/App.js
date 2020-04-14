@@ -23,7 +23,7 @@ import EmojiGame from './components/EmojiGame/index.js';
 
 import { TodoListUsingMobx } from './components/TodoListUsingMobx';
 import './components/TodoListUsingMobx/index.css';
-import TodoApp from './components/TodoListWithMobx/TodoApp/TodoApp';
+import TodoApp from './components/TodoListWithMobx/TodoApp';
 
 import A from './components/ProviderConcept/A/index.js'
 //configure({ enforceActions: true });
