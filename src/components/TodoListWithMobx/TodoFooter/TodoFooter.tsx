@@ -1,7 +1,7 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import todoStore from '../../../stores/TodoStore/TodoStore.js';
+import todoStore from '../../../stores/TodoStore';
 
 @observer
 class TodoFooter extends React.Component {

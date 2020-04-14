@@ -1,8 +1,8 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import todoStore from '../../../stores/TodoStore/TodoStore.js';
-import TodoModel from '../../../stores/models/Todo.js';
+import todoStore from '../../../stores/TodoStore/TodoStore';
+import TodoModel from '../../../stores/models';
 @observer
 class AddTodo extends React.Component {
     updateTodo = (event) => {

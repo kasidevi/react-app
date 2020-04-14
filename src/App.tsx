@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import { configure } from 'mobx';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+
 import themeStore from './stores/ThemeStore';
 import "./App.css";
 import CounterPage from "./components/CounterPage";
-import CounterUsingMobx from "./components/CounterUsingMobx/index.js";
+import CounterUsingMobx from "./components/CounterUsingMobx";
 
 import TailWindPractice1 from "./components/TailWindPractice1";
 import { CarList } from './components/CarsList/index.js';
@@ -20,9 +21,9 @@ import CountryDetails from './components/CountryDetails/CountryDetails.js';
 import './components/CountriesDashboardApp/CountriesDashboardApp.css';
 import EmojiGame from './components/EmojiGame/index.js';
 
-import { TodoListUsingMobx } from './components/TodoListUsingMobx/index.js';
+import { TodoListUsingMobx } from './components/TodoListUsingMobx';
 import './components/TodoListUsingMobx/index.css';
-import TodoApp from './components/TodoListWithMobx/TodoApp/TodoApp.js';
+import TodoApp from './components/TodoListWithMobx/TodoApp/TodoApp';
 
 import A from './components/ProviderConcept/A/index.js'
 //configure({ enforceActions: true });
@@ -109,10 +110,10 @@ class App extends React.Component {
             <CarList />
           </Route>
           
-          <Route path="/counter-page">
+          {/*<Route path="/counter-page">
           <CounterPage />
         </Route>
-      
+      */}
           <Route path="/TodoList">
             <TodoList />
           </Route>

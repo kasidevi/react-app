@@ -1,15 +1,18 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import todoStore from '../../../stores/TodoStore/TodoStore.js';
-import AddTodo from '../AddTodo/AddTodo.js';
-import TodoFooter from '../TodoFooter/TodoFooter.js';
+import todoStore from '../../../stores/TodoStore';
+import AddTodo from '../AddTodo';
+import TodoFooter from '../TodoFooter/TodoFooter';
 
 @observer
 class TodoApp extends React.Component {
-    // onAddTodo = (event) => {
-    //     todoStore.onAddTodo(event);
-    // }
+    onAddTodo = (event) => {
+          if (event.key === 'Enter' && event.target.value.trim() !== '') {
+            todoStore.onAddTodo(event.target.value);
+            event.target.value = "";
+          }
+     }
     // onRemoveTodo = (event) => {
     //     todoStore.onRemoveTodo(event);
     // }
@@ -19,7 +22,7 @@ class TodoApp extends React.Component {
     render() {
         return (<div className='header-div'>
      <h1>todos</h1>
-     <input className='user-input-field' type='text' placeholder='What needs to be done?' onKeyDown={todoStore.onAddTodo}></input>
+     <input className='user-input-field' type='text' placeholder='What needs to be done?' onKeyDown={this.onAddTodo}></input>
      <div>{todoStore.onChangeSelectedFilter(todoStore.selectedFilter)}</div>
      <TodoFooter/>
         </div>);

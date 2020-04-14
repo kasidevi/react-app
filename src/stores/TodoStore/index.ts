@@ -1,27 +1,33 @@
 import React from 'react';
 import { observable, computed, action } from 'mobx';
 import { observer } from 'mobx-react';
-import AddTodo from '../../components/TodoListWithMobx/AddTodo/AddTodo.js';
-import TodoModel from '../models/Todo.js'
+import AddTodo from '../../components/TodoListWithMobx/AddTodo';
+import TodoModel from '../models'
 //let idCount = 0;
-
+type todoObject={
+    inputText:string
+    id:string
+    isChecked:boolean
+}
 class TodoStore {
-    @observable todos
-    @observable selectedFilter
+    @observable todos:any
+    @observable selectedFilter: string
     constructor() {
         this.todos = [];
         this.selectedFilter = 'All';
     }
-    onAddTodo = (event) => {
-        let object = {};
-        object.inputText = event.target.value;
-        object.id = Math.random();
-        object.isChecked = false;
-        if (event.key === 'Enter' && object.inputText.trim() !== '') {
+    onAddTodo = (title:string) => {
+        const object:todoObject ={
+        inputText : title,
+        id : Math.random().toString(),
+        isChecked :false
+      
+        };
+      //  if (title.key === 'Enter' && object.inputText.trim() !== '') {
             const newTodoModel = new TodoModel(object);
             this.todos.push(newTodoModel);
-            event.target.value = "";
-        }
+       //     event.target.value = "";
+     //   }
     }
 
     onRemoveTodo = (removeTodo) => {
