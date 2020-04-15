@@ -26,6 +26,7 @@ import './components/TodoListUsingMobx/index.css';
 import TodoApp from './components/TodoListWithMobx/TodoApp';
 
 import A from './components/ProviderConcept/A/index.js'
+import GridMemoryGame from './components/GridMemoryGame'
 //configure({ enforceActions: true });
 @observer
 class App extends React.Component {
@@ -94,6 +95,9 @@ class App extends React.Component {
            <li>
               <Link to="/ProviderConcept">Provider Concept in mobx</Link>
             </li>
+           <li>
+              <Link to="/grid-game">Grid Memory Game</Link>
+            </li>
            
           </ul>
         </nav>
@@ -132,6 +136,10 @@ class App extends React.Component {
             
             <Route path="/CountriesDashboardApp">
             <CountriesDashboardApp />
+          </Route>
+                  
+            <Route path="/grid-game">
+            <GridMemoryGame />
           </Route>
                   
         <Route path="/country-dashboard-app/details/:id">
