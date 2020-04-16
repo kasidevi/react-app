@@ -8,9 +8,9 @@ class Header extends React.Component {
     onChangeSelectedTheme = () => {}
     render() {
         return (<HeaderDiv>
-        <TopLevelHeading>Top Level: {gameStore.level}</TopLevelHeading>
+        <TopLevelHeading>Top Level: {gameStore.topLevel}</TopLevelHeading>
         <ThemeAndLevel>
-        <Level>Level: {gameStore.topLevel}</Level>
+        <Level>Level: {gameStore.level}</Level>
         <Theme>Mode:</Theme>
         </ThemeAndLevel>
         </HeaderDiv>);

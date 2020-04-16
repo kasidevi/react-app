@@ -6,7 +6,7 @@ class GridCellModel {
     id
     constructor(object) {
         this.id = object.id;
-        this.isHidden = object.isChecked;
+        this.isHidden = object.isHidden;
     }
 }
 
