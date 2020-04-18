@@ -33,11 +33,11 @@ class GameStore {
             }
             else if (this.selectedCellsCount === this.level + 3) {
                 this.isGameCompleted = false;
-                this.goToNextLevelAndUpdateCells();
+                this.timeOutId = setTimeout(() => { this.goToNextLevelAndUpdateCells() }, 300);
             }
         }
         else {
-            this.goToInitialLevelAndUpdateCells();
+            this.timeOutId = setTimeout(() => { this.goToInitialLevelAndUpdateCells() }, 300);
         }
     }
     setGridCells = () => {
@@ -59,6 +59,7 @@ class GameStore {
         this.resetSelectedCellsCount();
         this.currentLevelGridCells = [];
         this.setGridCells();
+        clearTimeout(this.timeOutId);
     }
 
     goToInitialLevelAndUpdateCells = () => {
@@ -67,6 +68,7 @@ class GameStore {
         this.resetSelectedCellsCount();
         this.currentLevelGridCells = [];
         this.setGridCells();
+        clearTimeout(this.timeOutId);
     }
 
     resetSelectedCellsCount = () => {
