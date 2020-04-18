@@ -1,8 +1,10 @@
 import React from 'react';
 import shuffle from 'shuffle-array';
-import { observable, computed, action } from 'mobx';
+import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Cell from '../models/Cell';
+import { gridsData } from '../GridData';
+//import themeStoreForGridgame from '../ThemeStoreForGridgame';
 class GameStore {
     @observable level
     @observable topLevel
@@ -10,26 +12,24 @@ class GameStore {
     @observable selectedCellsCount
     @observable isGameCompleted
     @observable copyOfCurrentLevelGridCells
-    //@observable setGridCells
+
     constructor() {
+        this.gridsData = gridsData;
         this.level = 0;
         this.topLevel = 0;
         this.currentLevelGridCells = [];
-        // this.copyOfCurrentLevelGridCells = [];
         this.selectedCellsCount = 0;
         this.isGameCompleted = false;
         this.setGridCells();
+        this.array = [];
     }
 
     onCellClick = (id, isHidden) => {
         if (isHidden) {
             this.incrementSelectedCellsCount();
-            console.log(id, true);
-
-            if (this.selectedCellsCount === this.level + 3 && this.level === 6) {
+            if (this.selectedCellsCount === this.level + 3 && this.level === 7) {
                 alert('all levels completed');
                 this.isGameCompleted = true;
-                this.goToInitialLevelAndUpdateCells();
             }
             else if (this.selectedCellsCount === this.level + 3) {
                 this.isGameCompleted = false;
@@ -37,8 +37,6 @@ class GameStore {
             }
         }
         else {
-            //  console.log(id, false);
-            //   this.isGameCompleted = false;
             this.goToInitialLevelAndUpdateCells();
         }
     }
@@ -54,14 +52,6 @@ class GameStore {
             this.currentLevelGridCells[i].isHidden = true;
         }
         shuffle(this.currentLevelGridCells);
-        console.log('store', this.currentLevelGridCells);
-
-        // this.currentLevelGridCells.Math.random();
-
-        // if (this.level === 8)
-        //      this.goToNextLevelAndUpdateCells();
-        // else
-        //     this.goToInitialLevelAndUpdateCells();
     }
 
     goToNextLevelAndUpdateCells = () => {
@@ -72,7 +62,6 @@ class GameStore {
     }
 
     goToInitialLevelAndUpdateCells = () => {
-        // this.isGameCompleted = false;
         this.setTopLevel();
         this.level = 0;
         this.resetSelectedCellsCount();
@@ -89,12 +78,12 @@ class GameStore {
     }
 
     onPlayAgainClick = () => {
-        alert('playagain')
         this.resetGame();
     }
 
     resetGame = () => {
         this.goToInitialLevelAndUpdateCells();
+        this.isGameCompleted = false;
     }
 
     setTopLevel = () => {
