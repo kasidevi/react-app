@@ -1,9 +1,9 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { EachCell } from '../CssStylings';
 import gameStore from '../../../stores/GameStore';
 import themeStoreForGridgame from '../../../stores/ThemeStoreForGridGame';
+import { EachCell } from '../CssStylings';
 
 @observer
 class Cell extends React.Component {
@@ -14,6 +14,7 @@ class Cell extends React.Component {
    timeOutIdReset;
    timeOutIdForOnClick;
    cellColor = '';
+
    constructor(props) {
       super(props);
       this.shouldShowHiddenCells = true;
@@ -22,13 +23,18 @@ class Cell extends React.Component {
    }
 
    componentDidMount() {
+
+      const { resetGame, level } = gameStore;
+      const gridSize = level + 3;
+
       this.timeOutId = setTimeout(() => {
          this.shouldShowHiddenCells = false;
          this.timeOutIdReset = setTimeout(() => {
-            gameStore.resetGame();
+            resetGame();
             this.shouldShowHiddenCells = true;
-         }, ((gameStore.level + 3) * 2000));
-      }, ((gameStore.level + 3) * 1000));
+         }, ((gridSize) * 2000));
+      }, ((gridSize) * 1000));
+
    }
 
    componentWillUnmount() {
@@ -39,31 +45,38 @@ class Cell extends React.Component {
 
    eachCellColor = () => {
       const { props: { cell: { isHidden } }, isClickedOnCell, shouldShowHiddenCells } = this;
+      const { selectedTheme } = themeStoreForGridgame;
       if (isHidden && (isClickedOnCell || shouldShowHiddenCells)) {
-         this.cellColor = themeStoreForGridgame.selectedTheme === 'Light' ? 'green' : '#4fd1c5';
+         this.cellColor = selectedTheme === 'Light' ? 'green' : '#4fd1c5';
       }
 
       else if (!isHidden && isClickedOnCell) {
          this.cellColor = 'red';
       }
       else {
-         this.cellColor = themeStoreForGridgame.selectedTheme === 'Light' ? '#294264' : '#2c5282';
+         this.cellColor = selectedTheme === 'Light' ? '#294264' : '#2c5282';
       }
    }
 
    onCellClick = () => {
-      const { id, isHidden } = this.props;
-      this.timeOutIdForOnClick = setTimeout(() => { gameStore.onCellClick(id, isHidden) }, 300);
+      const { isHidden } = this.props;
+      this.timeOutIdForOnClick = setTimeout(() => { gameStore.onCellClick(isHidden) }, 300);
       this.isClickedOnCell = true;
       this.shouldShowHiddenCells = true;
    }
 
    render() {
       this.eachCellColor();
-      const { isHidden } = this.props;
-      const level = gameStore.level;
-      let width = ((gameStore.gridsData[level].gridWidth) / (level + 3)) - 4;
-      return (<EachCell disabled={this.shouldShowHiddenCells} cellColor={this.cellColor} cellWidth={width} shouldShowHiddenCells={this.shouldShowHiddenCells} isHidden = {isHidden} onClick={this.onCellClick}></EachCell>);
+      const { props: { cell: { isHidden } }, shouldShowHiddenCells, cellColor, onCellClick } = this;
+      const { level, gridsData } = gameStore;
+      const gridSize = level + 3;
+      const wholeGridWidth = gridsData[level].gridWidth;
+      let width = (wholeGridWidth / (gridSize)) - 4;
+
+      return (<EachCell disabled={shouldShowHiddenCells} 
+               cellColor={cellColor} cellWidth={width} shouldShowHiddenCells={shouldShowHiddenCells} 
+               isHidden = {isHidden} onClick={onCellClick}>
+               </EachCell>);
    }
 }
 export default Cell;

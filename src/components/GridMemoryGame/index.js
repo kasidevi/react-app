@@ -1,20 +1,24 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import gameStore from '../../stores/GameStore';
+import themeStoreForGridgame from '../../stores/ThemeStoreForGridGame';
 import Header from './Header';
 import GameFeild from './GameField';
 import GameResult from './GameResult';
 import { GridMemoryGameMainDiv } from './CssStylings';
-import gameStore from '../../stores/GameStore';
-import themeStoreForGridgame from '../../stores/ThemeStoreForGridGame';
 
 @observer
 class GridMemoryGame extends React.Component {
 
     render() {
-        return (<GridMemoryGameMainDiv theme={themeStoreForGridgame.selectedTheme}>
+        const { isGameCompleted } = gameStore;
+        const { selectedTheme } = themeStoreForGridgame;
+
+        return (<GridMemoryGameMainDiv theme={selectedTheme}>
         <Header/>
-        {gameStore.isGameCompleted?<GameResult/>:<GameFeild/>}
+        {isGameCompleted?<GameResult/>:<GameFeild/>}
         </GridMemoryGameMainDiv>);
+
     }
 }
 

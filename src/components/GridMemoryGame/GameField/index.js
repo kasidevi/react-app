@@ -1,17 +1,20 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import gameStore from '../../../stores/GameStore';
 import Cell from '../Cell';
 import { AllCells } from '../CssStylings';
-import gameStore from '../../../stores/GameStore';
 
 @observer
 class GameFeild extends React.Component {
 
     render() {
-        const level = gameStore.level;
-        return <AllCells width={gameStore.gridsData[level]}>{gameStore.currentLevelGridCells.map(cell=>
+
+        const { level, currentLevelGridCells, gridsData } = gameStore;
+
+        return <AllCells width={gridsData[level]}>{currentLevelGridCells.map(cell=>
         <Cell  key={Math.random()} id={cell.id} isHidden={cell.isHidden} cell={cell}/>)}
         </AllCells>;
+
     }
 }
 

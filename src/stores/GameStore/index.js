@@ -21,13 +21,15 @@ class GameStore {
         this.array = [];
     }
 
-    onCellClick = (id, isHidden) => {
+    onCellClick = (isHidden) => {
         if (isHidden) {
+            const noOfGrids = this.level + 3;
+
             this.incrementSelectedCellsCount();
-            if (this.selectedCellsCount === this.level + 3 && this.level === 7) {
+            if (this.selectedCellsCount === noOfGrids && this.level === 7) {
                 this.isGameCompleted = true;
             }
-            else if (this.selectedCellsCount === this.level + 3) {
+            else if (this.selectedCellsCount === noOfGrids) {
                 this.isGameCompleted = false;
                 this.goToNextLevelAndUpdateCells();
             }
@@ -37,15 +39,17 @@ class GameStore {
         }
     }
     setGridCells = () => {
+        const noOfGrids = this.level + 3;
+
         let ary = [];
-        for (let i = 0; i < (this.level + 3) ** 2; i++) {
+        for (let i = 0; i < (noOfGrids) ** 2; i++) {
             let object = {};
             object.id = Math.random();
             object.isHidden = false;
             const newCell = new Cell(object);
             ary.push(newCell);
         }
-        for (let i = 0; i < this.level + 3; i++) {
+        for (let i = 0; i < noOfGrids; i++) {
             ary[i].isHidden = true;
         }
         shuffle(ary);
