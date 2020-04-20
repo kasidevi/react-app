@@ -1,15 +1,17 @@
 import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+
 import gameStore from '../../../stores/GameStore';
 import themeStoreForGridgame from '../../../stores/ThemeStoreForGridGame';
+
 import { EachCell } from '../CssStylings';
 
 @observer
 class Cell extends React.Component {
    @observable shouldShowHiddenCells
    @observable isClickedOnCell
-   @observable Disabled
+
    timeOutId;
    timeOutIdReset;
    timeOutIdForOnClick;
@@ -19,7 +21,6 @@ class Cell extends React.Component {
       super(props);
       this.shouldShowHiddenCells = true;
       this.isClickedOnCell = false;
-      this.Disabled = false;
    }
 
    componentDidMount() {

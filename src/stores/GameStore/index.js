@@ -1,7 +1,9 @@
 import shuffle from 'shuffle-array';
 import { observable } from 'mobx';
+
 import Cell from '../models/Cell';
 import { gridsData } from '../GridData';
+
 class GameStore {
     @observable level
     @observable topLevel

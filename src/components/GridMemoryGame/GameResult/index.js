@@ -1,5 +1,7 @@
 import React from 'react';
+
 import gameStore from '../../../stores/GameStore';
+
 import { GameResultMainDiv, LevelDisplayInFinal, CongratsMsg, PlayAgainButton } from '../CssStylings';
 
 class GameResult extends React.Component {

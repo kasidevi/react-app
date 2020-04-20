@@ -34,7 +34,9 @@ height:${props=>props.cellWidth}px;
 const GameResultMainDiv = styled.div `${tw`h-full flex flex-col items-center justify-center`}`;
 const LevelDisplayInFinal = styled.p `${tw`text-3xl text-center`}`;
 const CongratsMsg = styled.p `${tw`text-green-500 text-3xl`}`;
-const PlayAgainButton = styled.button `${tw`text-white bg-indigo-600 items-center rounded p-2 m-2`}`;
+const PlayAgainButton = styled.button `${tw`text-white bg-indigo-600 items-center rounded p-2 m-2`}
+border:none;
+`;
 
 export {
     GridMemoryGameMainDiv,

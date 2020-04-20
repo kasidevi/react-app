@@ -1,6 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+
 import gameStore from '../../../stores/GameStore';
+
 import Cell from '../Cell';
 import { AllCells } from '../CssStylings';
 

@@ -1,23 +1,27 @@
 import React from 'react';
-import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { HeaderDiv, TopLevelHeading, ThemeAndLevel, Level, Theme } from '../CssStylings';
+
 import gameStore from '../../../stores/GameStore';
 import themeStoreForGridgame from '../../../stores/ThemeStoreForGridGame';
 
+import { HeaderDiv, TopLevelHeading, ThemeAndLevel, Level, Theme } from '../CssStylings';
+
 @observer
 class Header extends React.Component {
-    onChangeSelectedTheme = () => {}
+
     render() {
-        const level = gameStore.level;
+        const { level, topLevel, gridsData } = gameStore;
+        const { selectedTheme, updateTheme } = themeStoreForGridgame;
+
         return (<HeaderDiv>
-        <TopLevelHeading>Top Level: {gameStore.topLevel}</TopLevelHeading>
-        <ThemeAndLevel width={gameStore.gridsData[level]}>
-        <Level>Level: {gameStore.level}</Level>
-        <Theme theme={themeStoreForGridgame.selectedTheme} onClick={themeStoreForGridgame.updateTheme}>Mode:{themeStoreForGridgame.selectedTheme==='Dark'?'Dark':'Light'}</Theme>
+        <TopLevelHeading>Top Level: {topLevel}</TopLevelHeading>
+        <ThemeAndLevel width={gridsData[level]}>
+        <Level>Level: {level}</Level>
+        <Theme theme={selectedTheme} onClick={updateTheme}>Mode: {selectedTheme==='Dark'?'Dark':'Light'}</Theme>
         </ThemeAndLevel>
         </HeaderDiv>);
     }
+
 }
 
 export default Header;

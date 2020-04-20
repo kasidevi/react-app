@@ -1,7 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+
 import gameStore from '../../stores/GameStore';
 import themeStoreForGridgame from '../../stores/ThemeStoreForGridGame';
+
 import Header from './Header';
 import GameFeild from './GameField';
 import GameResult from './GameResult';
