@@ -22,13 +22,14 @@ width:${props=>props.width.gridWidth}px;
 `;
 
 const EachCell = styled.button `
+border:none;
 margin:2px;
 background-color:${props=>props.cellColor};
 width:${props=>props.cellWidth}px;
 height:${props=>props.cellWidth}px;
 `;
 
-const GameResultMainDiv = styled.div `${tw`h-full justify-center`}`;
+const GameResultMainDiv = styled.div `${tw`h-full flex flex-col items-center justify-center`}`;
 const LevelDisplayInFinal = styled.p `${tw`text-3xl text-center`}`;
 const CongratsMsg = styled.p `${tw`text-green-500 text-3xl`}`;
 const PlayAgainButton = styled.button `${tw`text-white bg-indigo-600 items-center rounded p-2 m-2`}`;
@@ -46,5 +47,3 @@ export {
     CongratsMsg,
     PlayAgainButton
 };
-
-//background-color:${props=>props.isHidden?'#81e6d9':'#718096'};
