@@ -25,8 +25,8 @@ import { TodoListUsingMobx } from './components/TodoListUsingMobx';
 import './components/TodoListUsingMobx/index.css';
 import TodoApp from './components/TodoListWithMobx/TodoApp';
 
-import A from './components/ProviderConcept/A/index.js'
-import GridMemoryGame from './components/GridMemoryGame'
+import A from './components/ProviderConcept/A/index.js';
+import GridMemoryGame from './components/GridMemoryGame';
 //configure({ enforceActions: true });
 @observer
 class App extends React.Component {

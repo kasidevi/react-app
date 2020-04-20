@@ -50,7 +50,6 @@ class Cell extends React.Component {
       if (isHidden && (isClickedOnCell || shouldShowHiddenCells)) {
          this.cellColor = selectedTheme === 'Light' ? 'green' : '#4fd1c5';
       }
-
       else if (!isHidden && isClickedOnCell) {
          this.cellColor = 'red';
       }

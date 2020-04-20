@@ -26,7 +26,6 @@ class TodoApp extends React.Component {
      <div>{todoStore.onChangeSelectedFilter(todoStore.selectedFilter)}</div>
      <TodoFooter/>
         </div>);
-
     }
 }
 export default TodoApp;

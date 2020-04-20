@@ -1,7 +1,4 @@
-import React from 'react';
-import { observable, computed, action } from 'mobx';
-import { observer } from 'mobx-react';
-
+import { observable } from 'mobx';
 class TodoModel {
     @observable inputText
     @observable isChecked

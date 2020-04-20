@@ -42,4 +42,5 @@ export const gridsData = [{
         "hiddenCellCount": 10,
         "gridWidth": 475
     }
+
 ];

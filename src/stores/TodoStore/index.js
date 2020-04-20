@@ -1,9 +1,9 @@
 import React from 'react';
 import { observable, computed, action } from 'mobx';
-import { observer } from 'mobx-react';
 import AddTodo from '../../components/TodoListWithMobx/AddTodo';
-import TodoModel from '../models'
+import TodoModel from '../models';
 //let idCount = 0;
+
 class TodoStore {
     @observable todos
     @observable selectedFilter
@@ -12,10 +12,10 @@ class TodoStore {
         this.selectedFilter = 'All';
     }
     onAddTodo = (event) => {
-        const object = {}
-        object.inputText = event.target.value
-        object.id = Math.random()
-        object.isChecked = false
+        const object = {};
+        object.inputText = event.target.value;
+        object.id = Math.random();
+        object.isChecked = false;
 
         if (event.key === 'Enter' && object.inputText.trim() !== '') {
             const newTodoModel = new TodoModel(object);
