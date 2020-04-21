@@ -27,6 +27,8 @@ import TodoApp from './components/TodoListWithMobx/TodoApp';
 
 import A from './components/ProviderConcept/A/index.js';
 import GridMemoryGame from './components/GridMemoryGame';
+
+import UsersPage from './components/UsersPage';
 //configure({ enforceActions: true });
 @observer
 class App extends React.Component {
@@ -59,26 +61,26 @@ class App extends React.Component {
   render() {
     return (
       <Router  basename={process.env.PUBLIC_URL}> 
-   <div>
+  <div>
         <nav>
           <ul>
             <li>
               <Link to="/CarsList">CarList</Link>
             </li>
-        
+
             <li>
               <Link to="/TodoList">Todolist</Link>
             </li>
-          
+
             <li>
               <Link to="/ TodoListUsingMobx">Todo list using Mobx</Link>
             </li>
-            
+
               <li>
               <Link to="/TodoApp">TodoApp with  Mobx version2</Link>
             </li>
-          
-            
+
+
             <li>
               <Link to="/FormComponents">Form Component</Link>
             </li>
@@ -88,32 +90,32 @@ class App extends React.Component {
             <li>
             <Link to="/EmojiGame">Emoji Game</Link>
             </li>
-            
-             <li>
+
+            <li>
               <Link to="/CounterUsingMobx">Counter Using Mobx</Link>
             </li>
-           <li>
+          <li>
               <Link to="/ProviderConcept">Provider Concept in mobx</Link>
             </li>
-           <li>
+          <li>
               <Link to="/grid-game">Grid Memory Game</Link>
             </li>
-           
+
           </ul>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-         <Switch>
-         
-           <Route path="/ProviderConcept">
+        <Switch>
+
+          <Route path="/ProviderConcept">
             <A />
           </Route>
-          
-           <Route path="/CarsList">
+
+          <Route path="/CarsList">
             <CarList />
           </Route>
-          
+
           {/*<Route path="/counter-page">
           <CounterPage />
         </Route>
@@ -121,39 +123,42 @@ class App extends React.Component {
           <Route path="/TodoList">
             <TodoList />
           </Route>
-          
+
             <Route path="/ TodoListUsingMobx">
             <TodoListUsingMobx />
           </Route>
-        
+
           <Route path="/TodoApp">
             <TodoApp />
           </Route>
-          
+
           <Route path="/FormComponents">
             <FormComponent />
           </Route>
-            
+
             <Route path="/CountriesDashboardApp">
             <CountriesDashboardApp />
           </Route>
-                  
+
             <Route path="/grid-game">
             <GridMemoryGame />
           </Route>
-                  
+
         <Route path="/country-dashboard-app/details/:id">
         <CountryDetails onChangeTheme={this.onChangeTheme} selectedTheme={themeStore.selectedTheme} changeThemeToBody={themeStore.changeThemeToBody} changeThemeLight={themeStore.changeThemeLight} />
         </Route>
         <Route path="/EmojiGame">
         <EmojiGame />
         </Route>
-        
+
         <Route path="/CounterUsingMobx">
           <CounterUsingMobx/>
         </Route>
+
+        <Route exact path="/users" component={UsersPage}/>
+
         </Switch>
-     
+
       </div>
     </Router>
     );
@@ -179,7 +184,6 @@ export default App;
 
 
 // class App extends React.Component {
-//   }
 //   render() {
 //     return (
 //       <Router  basename={process.env.PUBLIC_URL}> 
@@ -197,7 +201,6 @@ export default App;
 //         <Route path="/TailWindPractice1">
 //           <TailWindPractice1 />
 //         </Route>
-
 
 //           <Route path="/">
 //           <HomePage />
