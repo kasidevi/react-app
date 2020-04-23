@@ -30,6 +30,7 @@ import A from './components/ProviderConcept/A/index.js';
 import GridMemoryGame from './components/GridMemoryGame';
 
 import UsersPage from './components/UsersPage';
+import TodoListWithNetworkCalls from './components/TodoListWithNetworkCalls';
 import stores from './stores';
 //configure({ enforceActions: true });
 @observer
@@ -85,6 +86,9 @@ class App extends React.Component {
 
               <li>
               <Link to="/TodoAppForAPI">TodoApp with  Mobx version2 for API</Link>
+            </li>
+ <li>
+              <Link to="/todos">TodoList with networkCallWithApisauce </Link>
             </li>
 
 
@@ -166,6 +170,7 @@ class App extends React.Component {
         </Route>
 
         <Route exact path="/users" component={UsersPage}/>
+        <Route exact path="/todos" component={TodoListWithNetworkCalls}/>
 
         </Switch>
 
