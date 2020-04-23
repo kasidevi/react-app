@@ -8,6 +8,13 @@ class TodoModel {
         this.inputText = object.inputText;
         this.isChecked = object.isChecked;
     }
+    onChangeInputText = (text) => {
+        this.inputText = text;
+    }
+    onChangeCheckBox = () => {
+        this.isChecked = !this.isChecked;
+    }
 }
 
 export default TodoModel;
+    

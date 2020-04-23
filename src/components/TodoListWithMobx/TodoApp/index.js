@@ -7,29 +7,36 @@ import TodoFooter from '../TodoFooter';
 
 @observer
 class TodoApp extends React.Component {
-    // onAddTodo = (event) => {
-    //       if (event.key === 'Enter' && event.target.value.trim() !== '') {
-    //         todoStore.onAddTodo(event.target.value);
-    //         event.target.value = "";
-    //       }
-    //  }
-    // onRemoveTodo = (event) => {
-    //     todoStore.onRemoveTodo(event);
-    // }
-    // onChangeSelectedFilter = (selectedFilter) => {
-    //     todoStore.onChangeSelectedFilter(selectedFilter);
-    // }
+
+    onChangeSelectedFilter = (filter) => {
+        todoStore.setSelectedFilter(filter);
+    }
+
+    getTodos = () => {
+        return todoStore.getFilteredTodos();
+    }
+
+    onRemoveTodo = (todo) => {
+        todoStore.onRemoveTodo(todo);
+    }
+
+    renderTodos = () => {
+        console.log(this.getTodos());
+        return this.getTodos().map(todo => <AddTodo userInput={todo}  key={todo.id} id={todo.id} checkbox={todo.isChecked} removeTodo={()=>this.onRemoveTodo(todo.id)} classNameToLinethrough={todo.isChecked?'user-text-linethrough':'user-text'}/>);
+    }
+
     render() {
-        return (<div className='header-div'>
+        const { selectedFilter } = todoStore;
+        return (
+            <div className='header-div'>
      <h1>todos</h1>
      <input className='user-input-field' type='text' placeholder='What needs to be done?' onKeyDown={todoStore.onAddTodo}></input>
-     <div>{todoStore.onChangeSelectedFilter(todoStore.selectedFilter)}</div>
+     <div>{this.renderTodos()}</div>
      <TodoFooter/>
         </div>);
     }
 }
 export default TodoApp;
-
 
 // import React from 'react';
 // import { observable } from 'mobx';
@@ -166,3 +173,24 @@ export default TodoApp;
 // }
 
 // export { TodoListUsingMobx };
+
+/*
+const { todos, todoListCheckedOrNot, onRemoveTodo, } = todoStore;
+        switch (filter) {
+            case 'All':
+                array = todos.map((todo) => { todo });
+                todos = array;
+            case 'Active':
+                let activeList = [...todos].filter(todo => todo.isChecked === false);
+                return <div>
+                {activeList.map((todo)=>
+                <AddTodo key={todo.id}  checkbox={todoListCheckedOrNot} removeTodo={onRemoveTodo}  userInput={todo} classNameToLinethrough={todo.isChecked?'user-text-linethrough':'user-text' }/>)}
+                </div>;
+            case 'Completed':
+                let completedList = [...todos].filter(todo => todo.isChecked === true);
+                return <div> {completedList.map((todo)=>
+                <AddTodo  key={todo.id} checkbox={todoListCheckedOrNot} removeTodo={onRemoveTodo}  userInput={todo} classNameToLinethrough={todo.isChecked?'user-text-linethrough':'user-text' }/>)}
+                </div>;
+
+        }
+*/

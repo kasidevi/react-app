@@ -1,26 +1,26 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import todoStore from '../../../stores/TodoStore';
+import todoStoreForAPI from '../../../stores/TodoStoreForAPI';
 
 @observer
 class TodoFooter extends React.Component {
     allTodos = () => {
-        todoStore.selectedFilter = 'All';
+        todoStoreForAPI.selectedFilter = 'All';
     }
 
     activeTodos = () => {
-        todoStore.selectedFilter = 'Active';
+        todoStoreForAPI.selectedFilter = 'Active';
     }
     completedTodos = () => {
-        todoStore.selectedFilter = 'Completed';
+        todoStoreForAPI.selectedFilter = 'Completed';
     }
     render() {
-        return (<div className={todoStore.todosCount>0?'footer-visible':'footer-hidden'}>
-         <p className='footer-itemsleft'>{todoStore.activeTodosCount} itemsLeft</p>
+        return (<div className={todoStoreForAPI.todosCount()>0?'footer-visible':'footer-hidden'}>
+         <p className='footer-itemsleft'>{todoStoreForAPI.activeTodosCount} itemsLeft</p>
          <p className='footer-data' onClick={this.allTodos}>All</p>
          <p className='footer-data' onClick={this.activeTodos}>Active</p>
          <p className='footer-data' onClick={this.completedTodos}>Completed</p>
-         <p onClick={todoStore.onClearCompleted}>Clear completed</p>
+         <p onClick={todoStoreForAPI.onClearCompleted}>Clear completed</p>
         </div>);
     }
 }

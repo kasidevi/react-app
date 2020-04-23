@@ -17,11 +17,9 @@ class TodoStore {
         object.id = Math.random();
         object.isChecked = false;
 
-        if (event.key === 'Enter' && object.inputText.trim() !== '') {
-            const newTodoModel = new TodoModel(object);
-            this.todos.push(newTodoModel);
-            event.target.value = "";
-        }
+        const newTodoModel = new TodoModel(object);
+        this.todos.push(newTodoModel);
+
     }
 
     onRemoveTodo = (removeTodo) => {
@@ -33,6 +31,7 @@ class TodoStore {
             this.todos = listOfObjects;
         }
     }
+
     @action.bound
     onClearCompleted = () => {
         this.todos = this.todos.filter(todo => todo.isChecked === false);
@@ -53,7 +52,52 @@ class TodoStore {
         let unCompletedList = listOfObjects.filter(todo => todo.isChecked === false);
         return unCompletedList.length;
     }
-    onChangeSelectedFilter = (filter) => {
+    getFilteredTodos = () => {
+        switch (this.selectedFilter) {
+            case 'All':
+                return this.todos;
+
+            case 'Active':
+                return [...this.todos].filter(todo => todo.isChecked === false);
+
+            case 'Completed':
+                return [...this.todos].filter(todo => todo.isChecked === true);
+        }
+    }
+}
+const todoStore = new TodoStore();
+export default todoStore;
+
+
+/*import { observable, computed, action } from 'mobx';
+
+class TodoStore {
+    @observable todos
+    @observable selectedFilter
+    constructor() {
+        this.todos = [];
+        this.selectedFilter = 'All';
+    }
+    onAddTodo = () => {}
+    onRemoveTodo = () => {}
+    onCompleteTodo = () => {}
+    onUpdateTodoTitle = () => {}
+    onChangeSelectedFilter = () => {}
+    onClearCompleted = () => {}
+
+    @computed
+    get getActiveTodosCount() {}
+
+    @computed
+    get getFilteredTodos() {}
+
+}
+const todoStore = new TodoStore();
+export default todoStore;
+*/
+
+/*
+ onChangeSelectedFilter = (filter) => {
         switch (filter) {
             case 'All':
                 return (<div>{this.todos.map((todo)=>
@@ -74,7 +118,4 @@ class TodoStore {
                 throw Error('Invalid state');
         }
     }
-}
-
-const todoStore = new TodoStore();
-export default todoStore;
+*/

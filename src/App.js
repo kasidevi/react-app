@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import { configure } from 'mobx';
 import { observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { observer, Provider } from 'mobx-react';
 
 import themeStore from './stores/ThemeStore';
 import "./App.css";
@@ -24,11 +24,13 @@ import EmojiGame from './components/EmojiGame/index.js';
 import { TodoListUsingMobx } from './components/TodoListUsingMobx';
 import './components/TodoListUsingMobx/index.css';
 import TodoApp from './components/TodoListWithMobx/TodoApp';
+import TodoAppForAPI from './components/TodoAppForAPI';
 
 import A from './components/ProviderConcept/A/index.js';
 import GridMemoryGame from './components/GridMemoryGame';
 
 import UsersPage from './components/UsersPage';
+import stores from './stores';
 //configure({ enforceActions: true });
 @observer
 class App extends React.Component {
@@ -60,6 +62,7 @@ class App extends React.Component {
   }
   render() {
     return (
+      <Provider {...stores}>
       <Router  basename={process.env.PUBLIC_URL}> 
   <div>
         <nav>
@@ -78,6 +81,10 @@ class App extends React.Component {
 
               <li>
               <Link to="/TodoApp">TodoApp with  Mobx version2</Link>
+            </li>
+
+              <li>
+              <Link to="/TodoAppForAPI">TodoApp with  Mobx version2 for API</Link>
             </li>
 
 
@@ -131,6 +138,9 @@ class App extends React.Component {
           <Route path="/TodoApp">
             <TodoApp />
           </Route>
+          <Route path="/TodoAppForAPI">
+            <TodoAppForAPI />
+          </Route>
 
           <Route path="/FormComponents">
             <FormComponent />
@@ -161,6 +171,7 @@ class App extends React.Component {
 
       </div>
     </Router>
+    </Provider>
     );
   }
 }

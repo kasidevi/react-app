@@ -4,7 +4,7 @@ import { create } from 'apisauce';
 import { networkCallWithApisauce } from '../../utils/APIUtils';
 import { apiMethods } from '../../constants/APIConstants';
 
-import UserService from '../../services/UserService';
+import UserService from '../../services/UserService/index.fixture';
 
 import { API_INITIAL, API_SUCCESS, API_FAILED, API_FETCHING } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
@@ -18,6 +18,7 @@ class UserStore {
         this.userService = userService;
         this.init();
     }
+
     @action.bound
     setUsersApiResponse(users) {
         this.users = users.map((user) => user.name);
@@ -66,6 +67,6 @@ class UserStore {
     }
 }
 
-const userService = new UserService();
-const userStore = new UserStore(userService);
-export default userStore;
+//const userService = new UserService();
+//const userStore = new UserStore(userService);
+export default UserStore;

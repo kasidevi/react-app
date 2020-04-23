@@ -1,7 +1,13 @@
-import CounterStore from './CounterStore'
+import UserService from '../services/UserService/index.api';
 
-const counterStore = new CounterStore()
+import CounterStore from './CounterStore';
+import UserStore from './UsersStore';
+
+const counterStore = new CounterStore();
+const userService = new UserService();
+const usersStore = new UserStore(userService);
 
 export default {
-  counterStore,
-}
+    counterStore,
+    usersStore
+};
