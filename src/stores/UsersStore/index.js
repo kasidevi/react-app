@@ -8,6 +8,7 @@ import UserService from '../../services/UserService/index.fixture';
 
 import { API_INITIAL, API_SUCCESS, API_FAILED, API_FETCHING } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
+
 class UserStore {
 
     @observable getUsersApiStatus

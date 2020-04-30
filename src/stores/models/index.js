@@ -17,4 +17,3 @@ class TodoModel {
 }
 
 export default TodoModel;
-    

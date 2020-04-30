@@ -40,6 +40,7 @@ class GameStore {
             this.goToInitialLevelAndUpdateCells();
         }
     }
+
     setGridCells = () => {
         const noOfGrids = this.level + 3;
 

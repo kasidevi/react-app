@@ -19,7 +19,9 @@ class TodoStoreWithNetworkCalls {
 
     @action.bound
     setTodoApiResponse(todos) {
-        this.todos = todos.map((todo) => { this.onAddTodo(todo.title) });
+        // console.log("response api")
+        todos.map((todo) => { this.onAddTodo(todo) });
+        // console.log("after api todos set", this.todos);
     }
 
     @action.bound
@@ -32,6 +34,7 @@ class TodoStoreWithNetworkCalls {
         this.getTodoApiStatus = apiStatus;
     }
 
+    @action.bound
     getTodoAPI() {
         const todoPromise = this.todoServices.getTodoAPI();
         return bindPromiseWithOnSuccess(todoPromise)
@@ -51,19 +54,19 @@ class TodoStoreWithNetworkCalls {
         this.init();
     }
 
-    onAddTodo = (input) => {
-        console.log('title in addtodo', input);
+    onAddTodo = (todo) => {
+        // console.log('title in addtodo', input);
         let todoObject = {
             id: Math.random(),
-            title: input,
-            isChecked: false
+            title: todo.title,
+            isChecked: todo.completed
         };
         const todoModelForAPI = new TodoModelForAPI(todoObject);
         this.todos.push(todoModelForAPI);
-        //   console.log(this.todos);
+        // console.log("adding 1 new todo model", todoModelForAPI);
     }
     @computed
-    todosCount = () => {
+    get todosCount() {
         return this.todos.length;
     }
 
@@ -75,9 +78,9 @@ class TodoStoreWithNetworkCalls {
             this.todos;
         }
     }
-
+    @computed
     get filteredTodos() {
-        console.log("filtered", this.todos);
+        // console.log("filtered", this.todos);
         switch (this.selectedFilter) {
             case 'All':
                 return this.todos;

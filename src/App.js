@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { observable } from 'mobx';
 import { observer, Provider } from 'mobx-react';
 
+//import HomePage from "./components/HomePage";
+
 import themeStore from './stores/ThemeStore';
 import "./App.css";
 import CounterPage from "./components/CounterPage";
@@ -31,8 +33,14 @@ import GridMemoryGame from './components/GridMemoryGame';
 
 import UsersPage from './components/UsersPage';
 import TodoListWithNetworkCalls from './components/TodoListWithNetworkCalls';
-import stores from './stores';
+import { SignInPage } from './Authentication/components/SignInPage';
+//import stores from './stores';
+import stores from './Authentication/stores';
+import storesProduct from './ProductsDashBoard/stores';
+
 //configure({ enforceActions: true });
+
+import ProductsPage from './ProductsDashBoard/components/ProductsPage';
 @observer
 class App extends React.Component {
   // @observable changeThemeToBody = 'light'
@@ -62,8 +70,9 @@ class App extends React.Component {
     themeStore.updateTheme();
   }
   render() {
+    // console.log(storesProduct);
     return (
-      <Provider {...stores}>
+      <Provider {...stores} {...storesProduct} >
       <Router  basename={process.env.PUBLIC_URL}> 
   <div>
         <nav>
@@ -87,10 +96,10 @@ class App extends React.Component {
               <li>
               <Link to="/TodoAppForAPI">TodoApp with  Mobx version2 for API</Link>
             </li>
- <li>
+            
+            <li>
               <Link to="/todos">TodoList with networkCallWithApisauce </Link>
             </li>
-
 
             <li>
               <Link to="/FormComponents">Form Component</Link>
@@ -111,6 +120,13 @@ class App extends React.Component {
           <li>
               <Link to="/grid-game">Grid Memory Game</Link>
             </li>
+            <li>
+              <Link to="/v1/signin/">Ecommerce signin page</Link>
+            </li>
+            
+            <li>
+              <Link to="/v1/products/">Ecommerce products list</Link>
+            </li>
 
           </ul>
         </nav>
@@ -118,6 +134,7 @@ class App extends React.Component {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+
 
           <Route path="/ProviderConcept">
             <A />
@@ -127,7 +144,9 @@ class App extends React.Component {
             <CarList />
           </Route>
 
-          {/*<Route path="/counter-page">
+          {/*
+          
+          <Route path="/counter-page">
           <CounterPage />
         </Route>
       */}
@@ -171,6 +190,9 @@ class App extends React.Component {
 
         <Route exact path="/users" component={UsersPage}/>
         <Route exact path="/todos" component={TodoListWithNetworkCalls}/>
+        
+        <Route exact path="/v1/signin/" component={SignInPage}/>
+ <Route exact path="/v1/products/" component={ProductsPage}/>
 
         </Switch>
 
