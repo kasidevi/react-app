@@ -5,7 +5,6 @@ import { ProductSortDiv, Select, Option } from './ProductSortCss';
 
 @observer
 class ProductSort extends React.Component {
-
     onSelectSortBy = (event) => {
         return this.props.onChangeSortBy(event.target.value);
     }

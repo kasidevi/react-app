@@ -21,4 +21,5 @@ class Product extends React.Component {
     }
 }
 
+
 export { Product };

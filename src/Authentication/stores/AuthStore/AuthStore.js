@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { API_INITIAL, API_FAILED, API_SUCCESS, API_FETCHING } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-
+import { setAccessToken } from '../../../utils/StorageUtils';
 class AuthStore {
     @observable getUserSignInAPIStatus
     @observable getUserSignInAPIError
@@ -16,22 +16,22 @@ class AuthStore {
     userSignIn() {
         const userSignInPromise = this.authService.signInAPI();
         return bindPromiseWithOnSuccess(userSignInPromise)
-            .to(this.setGetUserSignInAPIStatus, this.setUserSignInAPIResponse)
-            .catch(this.setGetUserSignInAPIError);
+            .to(this.setUserSignInAPIStatus, this.setUserSignInAPIResponse)
+            .catch(this.setUserSignInAPIError);
     }
 
     @action.bound
-    setUserSignInAPIResponse() {
-
+    setUserSignInAPIResponse(response) {
+        setAccessToken(response.access_token);
     }
 
     @action.bound
-    setGetUserSignInAPIError(error) {
+    setUserSignInAPIError(error) {
         this.getUserSignInAPIError = error;
     }
 
     @action.bound
-    setGetUserSignInAPIStatus(apiStatus) {
+    setUserSignInAPIStatus(apiStatus) {
         this.getUserSignInAPIStatus = apiStatus;
     }
 

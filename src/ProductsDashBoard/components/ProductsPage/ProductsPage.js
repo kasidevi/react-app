@@ -23,8 +23,9 @@ class ProductsPage extends React.Component {
     @action.bound
     onClickSignOut() {}
 
-    renderPage = () => {
+    renderPage = observer(() => {
         const { totalNoOfProductsDisplayed, onChangeSortBy, onSelectSize } = this.props.productStore;
+        console.log("page", this.props.productStore.sortedAndFilteredProducts)
         return (<ProductDashBoard>
         <SizeFilter onSelectSize={onSelectSize}/>
         <ProductListDiv>
@@ -32,10 +33,10 @@ class ProductsPage extends React.Component {
         <Header productCount={totalNoOfProductsDisplayed} onChangeSortBy={onChangeSortBy}/>
         <ProductSort onChangeSortBy={onChangeSortBy}/>
         </HeaderAndProductSort>
-        <ProductList products={this.props.productStore.productList}/>
+        <ProductList products={this.props.productStore.sortedAndFilteredProducts}/>
        </ProductListDiv>
         </ProductDashBoard>);
-    }
+    })
 
     render() {
         const { getProductListAPIStatus, getProductListAPIError, productList } = this.props.productStore;

@@ -44,41 +44,69 @@ class ProductStore {
 
     @action.bound
     onChangeSortBy(sortBy) {
-        switch (sortBy) {
-            case 'SELECT':
-                this.productList = this.productList;
-                break;
-            case 'ASCENDING':
-                this.productList = this.productList.slice().sort((a, b) => a.price > b.price);
-                break;
-
-            case 'DECENDING':
-                this.productList = this.productList.slice().sort((a, b) => a.price < b.price);
-        }
-        //   console.log('switch', this.productList);
+        this.sortBy = sortBy;
+        console.log("onChangeSortBy", this.sortBy)
     }
 
     @action.bound
     onSelectSize(size) {
+        console.log(this.sizeFilter);
+
         if (this.sizeFilter.indexOf(size) === -1) {
             this.sizeFilter.push(size);
         }
         else {
             let index = this.sizeFilter.indexOf(size);
             this.sizeFilter.splice(index, 1);
+
         }
     }
 
     @computed
     get totalNoOfProductsDisplayed() {
-        return this.productList.length;
+        return this.sortedAndFilteredProducts.length;
     }
 
     @computed
-    get products() {}
+    get products() {
+        console.log("products", this.sortBy)
+        switch (this.sortBy) {
+            case 'SELECT':
+                return this.productList;
+                //break;
+            case 'ASCENDING':
+                let a = this.productList.slice().sort((a, b) => a.price > b.price);
+                console.log("inStore", this.productList)
+                return a;
+
+            case 'DECENDING':
+                let b = this.productList.slice().sort((a, b) => a.price < b.price);
+                return b;
+        }
+    }
 
     @computed
     get sortedAndFilteredProducts() {
+
+        if (this.sizeFilter.length === 0) {
+            return this.products;
+        }
+        else {
+            let updatedList = [];
+            for (let i = 0; i < this.products.length; i++) {
+                for (let j = 0; j < this.sizeFilter.length; j++) {
+                    for (let k = 0; k < this.products[i].availableSizes.length; k++) {
+                        if (this.products[i].availableSizes[k] === this.sizeFilter[j]) {
+                            if (updatedList.indexOf(this.products[i]) === -1) {
+                                updatedList.push(this.products[i]);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            return updatedList;
+        }
 
     }
 

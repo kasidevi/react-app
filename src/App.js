@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 //import { configure } from 'mobx';
 import { observable } from 'mobx';
 import { observer, Provider } from 'mobx-react';
@@ -33,11 +33,11 @@ import GridMemoryGame from './components/GridMemoryGame';
 
 import UsersPage from './components/UsersPage';
 import TodoListWithNetworkCalls from './components/TodoListWithNetworkCalls';
-import { SignInPage } from './Authentication/components/SignInPage';
+import SignInRoute from './Authentication/routes/SignInRoute';
 //import stores from './stores';
 import stores from './Authentication/stores';
 import storesProduct from './ProductsDashBoard/stores';
-
+import routes from './Authentication/routes';
 //configure({ enforceActions: true });
 
 import ProductsPage from './ProductsDashBoard/components/ProductsPage';
@@ -69,6 +69,15 @@ class App extends React.Component {
 
     themeStore.updateTheme();
   }
+
+  getSignInPage = () => {
+    return <Redirect to="./v1/signin/"/>;
+  }
+
+  getProductsPage = () => {
+    return <Redirect to="./v1/products/"/>;
+  }
+
   render() {
     // console.log(storesProduct);
     return (
@@ -120,7 +129,10 @@ class App extends React.Component {
           <li>
               <Link to="/grid-game">Grid Memory Game</Link>
             </li>
-            <li>
+            
+
+            
+          <li>
               <Link to="/v1/signin/">Ecommerce signin page</Link>
             </li>
             
@@ -134,7 +146,7 @@ class App extends React.Component {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-
+        {routes}
 
           <Route path="/ProviderConcept">
             <A />
@@ -191,8 +203,11 @@ class App extends React.Component {
         <Route exact path="/users" component={UsersPage}/>
         <Route exact path="/todos" component={TodoListWithNetworkCalls}/>
         
-        <Route exact path="/v1/signin/" component={SignInPage}/>
+        <Route exact path="/v1/signin/" component={SignInRoute}/>
  <Route exact path="/v1/products/" component={ProductsPage}/>
+ 
+  <Route exact path="/" component={SignInRoute}/>
+ 
 
         </Switch>
 
