@@ -28,7 +28,7 @@ import './components/TodoListUsingMobx/index.css';
 import TodoApp from './components/TodoListWithMobx/TodoApp';
 import TodoAppForAPI from './components/TodoAppForAPI';
 
-import A from './components/ProviderConcept/A/index.js';
+import Parent from './components/ProviderConcept/Parent';
 import GridMemoryGame from './components/GridMemoryGame';
 
 import UsersPage from './components/UsersPage';
@@ -149,7 +149,7 @@ class App extends React.Component {
         {routes}
 
           <Route path="/ProviderConcept">
-            <A />
+            <Parent />
           </Route>
 
           <Route path="/CarsList">

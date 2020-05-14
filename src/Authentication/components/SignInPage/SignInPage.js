@@ -78,11 +78,12 @@ class SignInPage extends React.Component {
     this.password = '';
     this.errorMessage = '';
   }
-  componentDidMount() {
-    alert('cDM')
-    this.userNameRef.current.focus();
-    this.passwordRef.current.focus();
-  }
+
+  // componentDidMount() {
+  //   this.userNameRef.current.focus();
+  //   this.passwordRef.current.focus();
+  // }
+
   // componentDidMount() {
   //   this.doNetWorkCalls();
   // }
