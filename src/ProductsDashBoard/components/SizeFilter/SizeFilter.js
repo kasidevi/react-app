@@ -15,14 +15,14 @@ class SizeFilter extends React.Component {
 
     onSelectSize = (size) => {
         this.props.onSelectSize(size);
-        this.isChecked = true;
+        this.isChecked = !this.isChecked;
     }
 
     render() {
         return (<SizesDiv>
 <SizeText>Sizes</SizeText>
 <AllSizeButtons>
-{this.sizes.map((size)=><SizeButton isChecked={this.isChecked} key={Math.random()} onClick={this.onSelectSize.bind(this,size)}>{size}</SizeButton>)}
+{this.sizes.map((size)=><SizeButton isChecked={this.isChecked} key={Math.random()} id={Math.random()} onClick={this.onSelectSize.bind(this,size)}>{size}</SizeButton>)}
 </AllSizeButtons>
 </SizesDiv>);
     }

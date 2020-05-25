@@ -7,6 +7,7 @@ import LoadingWrapperWithFailure from '../../../components/common/LoadingWrapper
 import Header from '../Header';
 import ProductSort from '../ProductSort';
 import SizeFilter from '../SizeFilter';
+import Paginator from '../../../Common/Paginator/Paginator';
 
 @inject('authStore', 'productStore')
 @observer
@@ -25,7 +26,7 @@ class ProductsPage extends React.Component {
 
     renderPage = observer(() => {
         const { totalNoOfProductsDisplayed, onChangeSortBy, onSelectSize } = this.props.productStore;
-        console.log("page", this.props.productStore.sortedAndFilteredProducts)
+        console.log("page", this.props.productStore.sortedAndFilteredProducts);
         return (<ProductDashBoard>
         <SizeFilter onSelectSize={onSelectSize}/>
         <ProductListDiv>
@@ -35,6 +36,7 @@ class ProductsPage extends React.Component {
         </HeaderAndProductSort>
         <ProductList products={this.props.productStore.sortedAndFilteredProducts}/>
        </ProductListDiv>
+       <Paginator/>
         </ProductDashBoard>);
     })
 
